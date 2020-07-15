@@ -1,4 +1,4 @@
-import { request } from 'umi';
+import {request} from "@/services/request";
 import { pickBy, identity } from 'lodash';
 
 import { transformStepData, transformRouteData, transformUpstreamNodes } from './transform';

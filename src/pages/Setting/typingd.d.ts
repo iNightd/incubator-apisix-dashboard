@@ -6,4 +6,8 @@ declare namespace Setting {
   interface GrafanaConfig {
     grafanaURL: string;
   }
+
+  interface Token {
+    token: string
+  }
 }

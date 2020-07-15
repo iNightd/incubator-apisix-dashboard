@@ -1,4 +1,4 @@
-import { request } from 'umi';
+import {request} from "@/services/request";
 
 export const fetchList = ({ current = 1, pageSize = 10 }, search: string) =>
   request('/upstreams', {

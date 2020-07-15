@@ -16,7 +16,7 @@ const Settings: React.FC<{}> = () => {
     form.setFieldsValue(getSetting());
   }, []);
 
-  const onFinish = ({ grafanaURL, baseURL }: Setting.AdminAPI & Setting.GrafanaConfig) => {
+  const onFinish = ({ grafanaURL, baseURL, token }: Setting.AdminAPI & Setting.GrafanaConfig & Setting.Token) => {
     if (grafanaURL.length) {
       if (!/^https?:\/\//.test(grafanaURL)) {
         notification.error({
@@ -28,6 +28,7 @@ const Settings: React.FC<{}> = () => {
     }
     localStorage.setItem('GLOBAL_SETTING_API_BASE_URL', baseURL);
     localStorage.setItem('GLOBAL_SETTING_GRAFANA_URL', grafanaURL);
+    localStorage.setItem('GLOBAL_SETTING_TOKEN', token);
 
     notification.success({
       duration: 1,
@@ -61,8 +62,11 @@ const Settings: React.FC<{}> = () => {
             <TabPane key="TabContent" tab={formatMessage({ id: 'app.settings.admin-api' })}>
               <Form
                 form={form}
-                onFinish={(values) => onFinish(values as Setting.AdminAPI & Setting.GrafanaConfig)}
+                onFinish={(values) => onFinish(values as Setting.AdminAPI & Setting.GrafanaConfig & Setting.Token)}
               >
+                <Form.Item name="token">
+                  <Input placeholder={formatMessage({ id: 'app.settings.item.token' })} />
+                </Form.Item>
                 <Form.Item name="baseURL">
                   <Input placeholder={formatMessage({ id: 'app.settings.item.baseURL' })} />
                 </Form.Item>

@@ -1,4 +1,4 @@
-import { request } from 'umi';
+import {request} from "@/services/request";
 import querystring from 'querystring';
 import { identity, pickBy, omit } from 'lodash';
 

@@ -45,4 +45,7 @@ export default defineConfig({
   manifest: {
     basePath: '/',
   },
+  request: {
+    dataField: ''
+  }
 });

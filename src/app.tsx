@@ -1,12 +1,12 @@
 import React from 'react';
-import { notification } from 'antd';
-import { RequestConfig, history } from 'umi';
-import { BasicLayoutProps, Settings as LayoutSettings } from '@ant-design/pro-layout';
+import {notification} from 'antd';
+import {RequestConfig, history} from 'umi';
+import {BasicLayoutProps, Settings as LayoutSettings} from '@ant-design/pro-layout';
 
-import { getSetting } from '@/pages/Setting';
+import {getSetting} from '@/pages/Setting';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { queryCurrent } from '@/services/user';
+import {queryCurrent} from '@/services/user';
 import defaultSettings from '../config/defaultSettings';
 
 export async function getInitialState(): Promise<{
@@ -30,9 +30,7 @@ export async function getInitialState(): Promise<{
   };
 }
 
-export const layout = ({
-  initialState,
-}: {
+export const layout = ({initialState}: {
   initialState: { settings?: LayoutSettings };
 }): BasicLayoutProps => {
   return {
@@ -66,7 +64,7 @@ const codeMessage = {
  * 异常处理程序
  */
 const errorHandler = (error: { response: Response; data: any }): Promise<Response> => {
-  const { response } = error;
+  const {response} = error;
   if (response && response.status) {
     const errorText =
       error.data.msg || error.data.message || error.data.error_msg || codeMessage[response.status];
@@ -76,6 +74,7 @@ const errorHandler = (error: { response: Response; data: any }): Promise<Respons
       description: errorText,
     });
   } else if (!response) {
+    console.log(response, error)
     notification.error({
       description: '您的网络发生异常，无法连接服务器',
       message: '网络异常',
@@ -84,7 +83,7 @@ const errorHandler = (error: { response: Response; data: any }): Promise<Respons
   return Promise.reject(response);
 };
 
-const { baseURL } = getSetting();
+const {baseURL} = getSetting();
 export const request: RequestConfig = {
   prefix: baseURL,
   errorHandler,
