@@ -44,8 +44,5 @@ export default defineConfig({
   proxy: proxy[REACT_APP_ENV || 'dev'],
   manifest: {
     basePath: '/',
-  },
-  request: {
-    dataField: ''
   }
 });

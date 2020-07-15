@@ -87,5 +87,11 @@ const {baseURL} = getSetting();
 export const request: RequestConfig = {
   prefix: baseURL,
   errorHandler,
+  errorConfig: {
+    adaptor: (resData) => {
+      return resData;
+      // return {success: true, data: resData}
+    }
+  },
   credentials: 'same-origin',
 };
